@@ -29,7 +29,7 @@
                                                     <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                                                     <div id='phone_div' class="col-md-6">
-                                                        <input  id="phone" type="text" v-on:keyup.enter="this.value" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"   required autocomplete="phone" autofocus>
+                                                        <input  id="phone" v-model="fam" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" v-on:keypress="noLetters(event)"  required autocomplete="phone" autofocus>
 
                                                         @error('phone')
                                                             <span class="invalid-feedback" role="alert">

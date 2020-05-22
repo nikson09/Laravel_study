@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Auth::routes();
+
+Route::get('/', 'MainController@index')->name('main');
+
+Auth::routes();
+
+Route::get('/categories/{id}', 'CategoryController@index')->name('category')->where('id', '[0-9]+');
 
 Auth::routes();
 

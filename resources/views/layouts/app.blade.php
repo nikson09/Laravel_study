@@ -114,7 +114,7 @@
 
                 </div>
 <div class="auth noAuth topNavBlock">
-                     @guest   <p>@if (Route::has('register'))<a href="{{ route('register') }}">Регистрация</a> |@endif<a href="{{ route('login') }}">Вход</a></p>@else<p><a href="#">{{ Auth::user()->name }}</a> | <a href="{{ route('logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">Выход</a></p> @endguest
+                     @guest   <p>@if (Route::has('register'))<a href="{{ route('register') }}">Регистрация</a> |@endif<a href="{{ route('login') }}">Вход</a></p>@else<p><a href="{{ url('home') }}">{{ Auth::user()->name }}</a> | <a href="{{ route('logout') }}" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">Выход</a></p> @endguest
                   <div class="modal_button">      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalLong_pc"><span>Оплата и Доставка
 
                     </span></button></div>
@@ -170,55 +170,55 @@
             <ul class="super-menu mobile-menu menu-floated">
 
                 <li class="drop-down  float-left main-menu-item-1">
-                    <a href="/#1"  ><span class="main-menu-text">Абсент</span></a>
+                    <a href="/categories/1"  ><span class="main-menu-text">Абсент</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-2">
-                    <a href="/#2" rel="nofollow"><span class="main-menu-text">Бренди</span></a>
+                    <a href="/categories/2" rel="nofollow"><span class="main-menu-text">Бренди</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-3">
-                    <a href="/#3" rel="nofollow"><span class="main-menu-text">Вермут</span></a>
+                    <a href="/categories/3" rel="nofollow"><span class="main-menu-text">Вермут</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-4">
-                    <a href="/#4" rel="nofollow"><span class="main-menu-text">Вино</span></a>
+                    <a href="/categories/4" rel="nofollow"><span class="main-menu-text">Вино</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-5">
-                    <a href="/#5" rel="nofollow"><span class="main-menu-text">Виски</span></a>
+                    <a href="/categories/5" rel="nofollow"><span class="main-menu-text">Виски</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-6">
-                    <a href="/#6" rel="nofollow"><span class="main-menu-text">Водка</span></a>
+                    <a href="/categories/6" rel="nofollow"><span class="main-menu-text">Водка</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-7">
-                    <a href="/#7" rel="nofollow"><span class="main-menu-text">Джин</span></a>
+                    <a href="/categories/7" rel="nofollow"><span class="main-menu-text">Джин</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-8">
-                    <a href="/#8" rel="nofollow"><span class="main-menu-text">Кальвадос</span></a>
+                    <a href="/categories/8" rel="nofollow"><span class="main-menu-text">Кальвадос</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-9">
-                    <a href="/#9" rel="nofollow"><span class="main-menu-text">Коньяк</span></a>
+                    <a href="/categories/9" rel="nofollow"><span class="main-menu-text">Коньяк</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-10">
-                    <a href="/#10" rel="nofollow"><span class="main-menu-text">Ликер</span></a>
+                    <a href="/categories/10" rel="nofollow"><span class="main-menu-text">Ликер</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-11">
-                    <a href="/#11" rel="nofollow"><span class="main-menu-text">Ром</span></a>
+                    <a href="/categories/11" rel="nofollow"><span class="main-menu-text">Ром</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-12">
-                    <a href="/#12" rel="nofollow"><span class="main-menu-text">Текила</span></a>
+                    <a href="/categories/2" rel="nofollow"><span class="main-menu-text">Текила</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-13">
-                    <a href="/#13" rel="nofollow"><span class="main-menu-text">Игристое</span></a>
+                    <a href="/categories/13" rel="nofollow"><span class="main-menu-text">Игристое</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
 
@@ -237,5 +237,19 @@
             @yield('content')
         </main>
 
+        <footer id="footer"><!--Footer-->
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <p class="col-4"><img class="lazy autor" src="{{asset("img/autor.png")}}" alt="" class="autor"></p>
+
+                        <p class="col-8 text-sm-right"><img class="lazy autor_site" src="{{asset("img/3.svg")}}" alt=""></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </footer>
+</div>
 </body>
 </html>

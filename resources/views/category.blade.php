@@ -10,17 +10,20 @@
 
                     <h4 id="categor_name">Категории</h4>
                     <div class="panel-group category-products">
-
+@foreach($category as $cat)
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h6 class="panel-title">
-                                        <a href="/category">
-                                            </a></h6>
+                                        <a href="/categories/{{$cat->id}}">
+                                            {{$cat->name}}</a></h6>
                                 </div>
                             </div>
 
-
+@endforeach
             </div>
+
+
+
 </div>
             </div>
 

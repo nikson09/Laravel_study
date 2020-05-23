@@ -33,8 +33,9 @@
 <div class="col-9 padding-right" >
     <div class="features_items">
          <div class="Items_Back ">
-
-
+@foreach($category_name as $cat_name)
+<h3  class="title text-center">{{$cat_name -> name}}</h3>
+@endforeach
                      <div class="row justify-content-center ">
 
 
@@ -45,7 +46,7 @@
                                  <div class="productinfo text-center">
 
                                      <div class="row justify-content-center ">
-                                     <a href="/product/{{$product ->id}}">  <img  class="lazy" src="{{asset('/img/product/$product ->id')}}.jpg"  width="auto" height="215,783" alt="" /></a>
+                                     <a href="/product/{{$product -> id}}">  <img  class="lazy" src="{{asset('/img/product')}}/{{$product ->id}}.jpg"  width="auto" height="215,783" alt="" /></a>
                                      </div>
 
 

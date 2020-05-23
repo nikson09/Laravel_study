@@ -214,7 +214,7 @@
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-12">
-                    <a href="/categories/2" rel="nofollow"><span class="main-menu-text">Текила</span></a>
+                    <a href="/categories/12" rel="nofollow"><span class="main-menu-text">Текила</span></a>
                     <span class="mobile-plus">+</span>
                 </li>
                 <li class="drop-down  float-left main-menu-item-13">

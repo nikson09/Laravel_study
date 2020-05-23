@@ -24,6 +24,10 @@ Route::get('/categories/{id}', 'CategoryController@index')->name('category')->wh
 
 Auth::routes();
 
+Route::get('/product/{id}', 'ProductController@index')->name('product')->where('id', '[0-9]+');
+
+Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();

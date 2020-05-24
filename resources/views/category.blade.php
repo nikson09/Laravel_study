@@ -46,7 +46,7 @@
                                  <div class="productinfo text-center">
 
                                      <div class="row justify-content-center ">
-                                     <a href="/product/{{$product -> id}}">  <img  class="lazy" src="{{asset('/img/product')}}/{{$product ->id}}.jpg"  width="auto" height="215,783" alt="" /></a>
+                                     <a href="/product/{{$product -> id}}">  <img  class="lazy" src="{{asset('/img/products')}}/{{$product ->id}}.jpg"  width="auto" height="215,783" alt="" /></a>
                                      </div>
 
 
@@ -57,7 +57,7 @@
                                                      </div>
                                      <p>
                                          <a class="main-goods__title" href="/product/{{$product ->id}}">
-                                             {{$product ->name}}
+                                             {{$product ->name_site}}
                                          </a>
                                      </p>
 

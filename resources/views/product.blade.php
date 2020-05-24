@@ -41,7 +41,7 @@
                                                                                      <div class="container"><div class="row justify-content-center">
 
          @foreach($products as $product)
-                                                                                                  <img alt="{{$product -> name}}"  class="img_w" src="{{asset('img/product')}}/{{$product-> id}}.jpg" width="auto" height="270" alt="" />
+                                                                                                  <img alt="{{$product -> name_site}}"  class="img_w" src="{{asset('img/products')}}/{{$product-> id}}.jpg" width="auto" height="270" alt="" />
 
 
                                                          </div>
@@ -60,7 +60,7 @@
                                      <div class="col-7">
                                          <div class="product-information"><!--/product-information-->
 
-                                             <h2 >{{$product -> name}}</h2>
+                                             <h2 >{{$product -> name_site}}</h2>
 
                                              <div  class="But_add" >
                                              <span><div class="row justify-content-center">

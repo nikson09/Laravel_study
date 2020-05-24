@@ -37,12 +37,16 @@
                                              <div class="row">
                                                    <div class="col-5">
                                                             <div class="view-product">
-                                                                           <div class="w_image_w img-thumbnail">
+                                                            @foreach($products as $product)
+                                                                           <div class="w_image_w img-thumbnail">@if ($product -> discount)<span class="discount_date_w">{{$product -> discount_date}}</span>
+                                                                                                                @endif
                                                                                      <div class="container"><div class="row justify-content-center">
 
-         @foreach($products as $product)
-                                                                                                  <img alt="{{$product -> name_site}}"  class="img_w" src="{{asset('img/products')}}/{{$product-> id}}.jpg" width="auto" height="270" alt="" />
 
+                                                                                                  <img alt="{{$product -> name_site}}"  class="img_w" src="{{asset('img/products')}}/{{$product-> id}}.jpg" width="auto" height="270" alt="" />
+@if ($product -> discount)
+<span class="product__discount">-{{$product -> discount_num}}%</span>
+@endif
 
                                                          </div>
                         </div>
@@ -59,7 +63,9 @@
                                      </div>
                                      <div class="col-7">
                                          <div class="product-information"><!--/product-information-->
-
+                                     @if ($product -> is_new)
+                                    <img  src="{{asset('img/new.jpg')}}" class="newarrival" alt="" />
+                                     @endif
                                              <h2 >{{$product -> name_site}}</h2>
 
                                              <div  class="But_add" >
@@ -82,6 +88,28 @@
                                                  </span>
          </div>
          </br><h5 class="text-sm-center">Характеристики товара:</h5>
+
+                                    <p class="text-left"><b class="item_info_p">Обьем:</b>{{$product -> size}}л</p>
+                                    @if ($product -> category_id == 4)
+
+                                    <p class="text-left"><b class="item_info_p">Цвет:</b>
+                                        @if($product -> wine_color == 1)  <a  href='/sub_wine/1'>белое</a> @endif
+                                        @if($product -> wine_color == 2)  <a  href='/sub_wine/2'>красное</a>  @endif
+                                        @if($product -> wine_color == 3)  <a href='/sub_wine/3'>розовое</a> @endif
+                                    </p></div>
+
+                                        <p class="text-left"><b class="item_info_p">Тип:</b>
+                                        @if($product -> wine_class == 1)  екстра сухое @endif
+                                        @if($product -> wine_class == 2)  сухое @endif
+                                        @if($product -> wine_class == 3)  полусухое @endif
+                                        @if($product -> wine_class == 4)  полусладкое @endif
+                                        @if($product -> wine_class == 5)  сладкое @endif
+                                    </p>
+
+                                   @endif
+                                    <p class=" text-left"><b class="item_info_p">Крепость:</b>{{$product -> strength  }}%</p>
+
+
 
 
                                          </div><!--/product-information-->

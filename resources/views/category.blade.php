@@ -32,7 +32,19 @@
 
 <div class="col-9 padding-right" >
     <div class="features_items">
+
+
+    @foreach($category_name as $cat_img)
+            <div class="baner_mug">
+
+    <img class="lazy" src="{{asset('img/category')}}/{{$cat_img -> id}}.png" >
+
+    </div>
+@endforeach
+
+
          <div class="Items_Back ">
+
 @foreach($category_name as $cat_name)
 <h3  class="title text-center">{{$cat_name -> name}}</h3>
 @endforeach
@@ -81,7 +93,7 @@
                 @endforeach
 
 
-
+{{$products->links() }}
          </div>
 
          </div>

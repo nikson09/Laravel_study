@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MainController@index')->name('main');
 
-Route::get('/add_product/{id}', 'CartController@addProduct')->name('addProduct')->where('id', '[0-9]+');
+Route::get('/add_product/{id}/{qty}', 'CartController@addProduct')
+     ->name('addProduct')->where(['id' => '[0-9]+','qty' => '[0-9]+']);
 
 Route::get('/delete_product/{id}', 'CartController@deleteProduct')->name('deleteProduct')->where('id', '[0-9]+');
 

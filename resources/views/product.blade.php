@@ -72,8 +72,7 @@
                                             <span class="count">Кол-во: <button class="down btn btn-default checkout" >
                                                 <i class="fa fa-minus"></i></button><input type="text" class="quantity" id="quantity" value="1" data-min-value="1" data-max-value="10000" min="1"  pattern="[0-9]*"/>
                                                 <button class="up btn btn-default checkout" ><i class="fa fa-plus"></i></button>
-                                                <a href="#" class="btn btn-default add-to-cart" data-quantity="1"  data-id="{{$product -> id}}" ><i class="fa fa-shopping-cart"></i>В корзину</a></span>
-
+                                                <a href="/add_product/{{$product -> id}}/" class="btn btn-default add-to-cart" data-quantity="1"  data-id="" ><i class="fa fa-shopping-cart"></i>В корзину</a></span>
                                             </span>
                                         </div>
                                         </span>

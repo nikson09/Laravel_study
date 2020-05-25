@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
                                 <div class="cartTopBlock">
-                                    <a href="#" class="cartLink topNavBlock">
+                                    <a href="/checkout" class="cartLink topNavBlock">
 
                                         <p id="cart-count" class="mobile-hidden">Корзина: {{ $count }}</p>
                                         <span class="mobile-hidden">{{$total}}<span>грн</span></span>

@@ -91,7 +91,7 @@
 
                                                                             <h5 class="prics">{{$sliderItem -> price}} грн</h5>
                                                                         </div>
-                                                                        <a href="#" class="btn btn-default add-to-cart" data-id="{{$sliderItem ->id}}"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                                                        <a href="/add_product/{{$sliderItem ->id}}" class="btn btn-default add-to-cart" data-id="{{$sliderItem ->id}}"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                                                     </div>
                                                                 </div>
 

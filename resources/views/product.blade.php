@@ -65,7 +65,7 @@
                                      <div  class="But_add" >
                                         <span>
                                         <div class="row justify-content-center">
-                                            span class="price">{{$product -> price}}</span>
+                                            <span class="price">{{$product -> price}}</span>
                                             <span  class="price">грн</span>
                                         </div>
                                         <div class="row justify-content-center">

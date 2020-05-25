@@ -18,6 +18,12 @@ Route::get('/', 'MainController@index')->name('main');
 
 Route::get('/add_product/{id}', 'CartController@addProduct')->name('addProduct')->where('id', '[0-9]+');
 
+Route::get('/delete_product/{id}', 'CartController@deleteProduct')->name('deleteProduct')->where('id', '[0-9]+');
+
+Route::get('/minus_product/{id}', 'CartController@minusProduct')->name('minusProduct')->where('id', '[0-9]+');
+
+Route::get('checkout', 'CartController@checkoutAction')->name('checkout');
+
 Route::get('/categories/{id}', 'CategoryController@index')->name('category')->where('id', '[0-9]+');
 
 Route::get('/product/{id}', 'ProductController@index')->name('product')->where('id', '[0-9]+');

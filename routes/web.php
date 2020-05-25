@@ -14,21 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
-
 Route::get('/', 'MainController@index')->name('main');
 
-Auth::routes();
+Route::get('/add_product/{id}', 'CartController@addProduct')->name('addProduct')->where('id', '[0-9]+');
 
 Route::get('/categories/{id}', 'CategoryController@index')->name('category')->where('id', '[0-9]+');
 
-Auth::routes();
-
 Route::get('/product/{id}', 'ProductController@index')->name('product')->where('id', '[0-9]+');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

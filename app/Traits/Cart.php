@@ -6,6 +6,30 @@ use App\Product;
 
 trait Cart
 {
+
+    public static function add_to_cart($id,$qty)
+    {
+        $session_cart = session()->get('products_cart');
+
+            if(isset($session_cart))
+            {
+                $products_cart = $session_cart;
+            }
+
+            if(array_key_exists($id,$products_cart))
+            {
+                $products_cart[$id]+=$qty;
+            }
+            else
+            {
+                $products_cart[$id]=$qty;
+            }
+            session()->put('products_cart',$products_cart);
+            return redirect()->back();
+
+    }
+
+
     public static function count_items()
     {
         if(session('products_cart'))
@@ -25,9 +49,9 @@ trait Cart
     }
     public static function price_items()
     {
-            $products_cart = session()->get('products_cart');
-            $ids = array_keys($products_cart);
-            $products = Product::whereIn('id', $ids)->orderBy('id', 'asc')->get();
+        $products_cart = session()->get('products_cart');
+        $ids = array_keys($products_cart);
+        $products = Product::whereIn('id', $ids)->orderBy('id', 'asc')->get();
 
         if(session('products_cart'))
         {
@@ -44,7 +68,6 @@ trait Cart
             {
                 return 0;
             }
-
     }
 
 

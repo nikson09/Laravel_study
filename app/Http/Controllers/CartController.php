@@ -14,22 +14,7 @@ class CartController extends Controller
 
     public function addProduct($id, $qty)
     {
-        $session_cart = session()->get('products_cart');
-
-        if(isset($session_cart))
-        {
-            $products_cart = $session_cart;
-        }
-
-        if(array_key_exists($id,$products_cart))
-        {
-            $products_cart[$id]+=$qty;
-        }
-        else
-        {
-            $products_cart[$id]=$qty;
-        }
-        session()->put('products_cart',$products_cart);
+        Cart::add_to_cart($id, $qty);
 
         return redirect()->back();
     }

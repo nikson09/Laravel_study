@@ -130,7 +130,7 @@
                                     <a href="/checkout" class="cartLink topNavBlock">
 
                                         <p id="cart-count" class="mobile-hidden">Корзина: {{ $count }}</p>
-                                        <span class="mobile-hidden">{{$total}}<span>грн</span></span>
+                                        <span class="mobile-hidden"><span>{{ $total}} грн</span></span>
 
 
                                     </a>

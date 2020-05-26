@@ -41,7 +41,7 @@
                                     <th></th>
                                 </tr>
 
-                                @foreach (session('products_cart') as $id => $product)
+                                @foreach ($products as $product)
 
                                 <tr>
                                    <td>
@@ -52,7 +52,7 @@
                                    <td>{{$product['code']}}</td>
                                    <td>
                                        <a href="/product/{{$product['id']}}">
-                                       {{$product['name']}}
+                                       {{$product['name_site']}}
                                        </a>
                                        </br>
 
@@ -73,11 +73,11 @@
                                        <td colspan="2">
                                            <div class="row justify-content-center">
                                                 <a href="/minus_product/{{$product['id']}}" class="btn btn-default Ajax-minus" data-quantity="1"  data-id="{{$product['id']}}" ><i class="fa fa-minus"></i></a>
-                                                <span class="quantity" id="quantity{{$product['id']}}">{{$product['quantity']}}</span>
-                                                <a href="/add_product/{{$product['id']}}" class="btn btn-default Ajax-plus" data-quantity="1"  data-id="{{$product['id']}}" ><i class="fa fa-plus"></i></a>
+                                                <span class="quantity" id="quantity{{$product['id']}}">{{session('products_cart')[$product['id']]}}</span>
+                                                <a href="/add_product/{{$product['id']}}/1" class="btn btn-default Ajax-plus" data-quantity="1"  data-id="{{$product['id']}}" ><i class="fa fa-plus"></i></a>
                                            </div>
                                        </td>
-                                       <td class="text-center"><span class="price_items" id ="price_items{{$product['id']}}" data-price="">{{$product['quantity'] * $product['price']}} грн</span></td>
+                                       <td class="text-center"><span class="price_items" id ="price_items{{$product['id']}}" data-price="">{{session('products_cart')[$product['id']] * $product['price']}} грн</span></td>
                                        <td>
                                             <a class="btn btn-default checkout" href="/delete_product/{{$product['id']}}">
                                             <i class="fa fa-trash"></i>
@@ -98,7 +98,7 @@
                                 <a class="btn btn-default checkout" href="/cart/checkout"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
                            </div>
 
-                                <?php else: ?>
+                                @else
 
                            <div class="trash_shop">
                                 <p>Корзина пуста</p>
@@ -106,7 +106,7 @@
                                   <a class="btn btn-default checkout justify-content-center" href="/"><i class="fa fa-shopping-cart"></i> Вернуться к покупкам</a>
                               </div>
 
-                              <?php endif; ?>
+                              @endif
                           </div>
                       </div>
                   </div>

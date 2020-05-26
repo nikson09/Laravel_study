@@ -2,59 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\Cart;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+    use Cart;
+
     public function addProduct($id, $qty)
     {
-        $product = Product::find($id);
-        $products_cart = session()->get('products_cart');
 
-        if(!$products_cart)
+        $session_cart = session()->get('products_cart');
+
+        if(isset($session_cart))
         {
-            $products_cart =
-            [
-                $id =>
-                [
-                    "id"    => $product -> id,
-                    "discount"    => $product -> discount,
-                    "name"     => $product -> name_site,
-                    "quantity" => $qty,
-                    "code" => $product -> code,
-                    "price"    => $product -> price,
-                    "last_price"    => $product -> last_price
-                ]
-            ];
-            session()->put('products_cart',$products_cart);
-
-            return redirect()->back();
-        }
-        if(isset($products_cart[$id]))
-        {
-            $products_cart[$id]['quantity'] += +$qty;
-
-            session()->put('products_cart', $products_cart);
-
-            return redirect()->back() ;
+            $products_cart = $session_cart;
         }
 
-        $products_cart[$id] =
-        [
-            'id'    => $product -> id,
-            'discount'    => $product -> discount,
-            'name'     => $product -> name_site,
-            'quantity' => $qty,
-            'code' => $product -> code,
-            'price'    => $product -> price,
-            'last_price' => $product -> last_price
-        ];
+        if(array_key_exists($id,$products_cart))
+        {
+            $products_cart[$id]+=$qty;
+        }
+        else
+        {
+            $products_cart[$id]=$qty;
+        }
+
         session()->put('products_cart',$products_cart);
 
         return redirect()->back();
-
     }
 
     public function deleteProduct($id)
@@ -74,7 +53,7 @@ class CartController extends Controller
 
         if(isset($products_cart[$id]))
         {
-            $products_cart[$id]['quantity']--;
+            $products_cart[$id] -- ;
 
             session()->put('products_cart', $products_cart);
 
@@ -87,42 +66,18 @@ class CartController extends Controller
     {
         $category = Category::all();
 
-        $count = self::count_items();
-        $total = self::price_items();
+        $count = Cart::count_items();
+        $total = Cart::price_items();
 
-        return view('checkout',compact(['category','total','count']));
+        $products_cart = session()->get('products_cart');
+        $ids = array_keys($products_cart);
+        $products = Product::whereIn('id', $ids)->orderBy('id', 'asc')->get();
+
+
+
+        return view('checkout',compact(['category','count','products','total']));
     }
 
-    public function count_items()
-    {
-        if(session('products_cart'))
-        {
-            $count = 0;
-            foreach(session('products_cart') as $id => $cart)
-            {
-                $count = $count + $cart['quantity'];
-            }
-            return $count;
-        } else {
-                    return 0;
-                }
 
-    }
-
-    public function price_items()
-    {
-        if(session('products_cart'))
-        {
-            $total = 0;
-            foreach(session('products_cart') as $id => $cart)
-            {
-                $total += $cart['quantity'] * $cart['price'];
-            }
-            return $total;
-            } else {
-                        return 0;
-                    }
-
-    }
 
 }

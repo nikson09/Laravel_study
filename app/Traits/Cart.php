@@ -23,7 +23,6 @@ trait Cart
         }
 
     }
-
     public static function price_items()
     {
             $products_cart = session()->get('products_cart');

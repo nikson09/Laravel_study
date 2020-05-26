@@ -14,7 +14,6 @@ class CartController extends Controller
 
     public function addProduct($id, $qty)
     {
-
         $session_cart = session()->get('products_cart');
 
         if(isset($session_cart))
@@ -30,7 +29,6 @@ class CartController extends Controller
         {
             $products_cart[$id]=$qty;
         }
-
         session()->put('products_cart',$products_cart);
 
         return redirect()->back();
@@ -72,9 +70,6 @@ class CartController extends Controller
         $products_cart = session()->get('products_cart');
         $ids = array_keys($products_cart);
         $products = Product::whereIn('id', $ids)->orderBy('id', 'asc')->get();
-
-
-
         return view('checkout',compact(['category','count','products','total']));
     }
 

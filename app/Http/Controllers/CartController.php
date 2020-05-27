@@ -45,16 +45,41 @@ class CartController extends Controller
 
     }
 
+        public function plusProduct($id)
+        {
+            $products_cart = session('products_cart');
+
+            if(isset($products_cart[$id]))
+            {
+                $products_cart[$id] ++ ;
+
+                session()->put('products_cart', $products_cart);
+
+                return redirect()->back() ;
+            }
+
+        }
+
     public function checkoutAction()
     {
         $category = Category::all();
 
         $count = Cart::count_items();
         $total = Cart::price_items();
-
+        //заполняем масив сессией
         $products_cart = session()->get('products_cart');
+        //если есть товары в корзине
+        if(isset($products_cart))
+        {
+        //получаем ключ масива в сессии
         $ids = array_keys($products_cart);
+        //И ищем товары с таким же id в таблице и выводим его
         $products = Product::whereIn('id', $ids)->orderBy('id', 'asc')->get();
+        }
+        else
+        {
+        $products = null;
+        }
         return view('checkout',compact(['category','count','products','total']));
     }
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\Cart;
 use Illuminate\Http\Request;
 use App\Category;
 
 class HomeController extends Controller
 {
+
+    use Cart;
     /**
      * Create a new controller instance.
      *
@@ -26,6 +29,9 @@ class HomeController extends Controller
     {
         $category = Category::all();
 
-        return view('home',['category'=> $category]);
+        $count = Cart::count_items();
+        $total = Cart::price_items();
+
+        return view('home',compact(['category','count','total']);
     }
 }

@@ -89,9 +89,9 @@
 
                                                                            @endif
 
-                                                                            <h5 class="prics">{{$sliderItem -> price}} грн</h5>
+                                                                            <h5 id="price_{{$sliderItem ->id}}" class="prics">{{$sliderItem -> price}} грн</h5>
                                                                         </div>
-                                                                        <a href="/add_product/{{$sliderItem ->id}}/1" class="btn btn-default add-to-cart" data-id="{{$sliderItem ->id}}"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                                                        <a v-on:click="Add" class="btn btn-default add-to-cart" data-quantity="1" data-id="{{$sliderItem ->id}}"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                                                     </div>
                                                                 </div>
 
@@ -116,16 +116,16 @@
 
                                     </div>
                                 </div>
-                            <div class="last_items">
+                            <div id="products" class="last_items">
                                 <h3 class="title text-center">Новые товары</h4>
                         <div class="row justify-content-center ">
 
                     @foreach ($latestProducts as $product)
 
                         <div class="col-4">
-                            <div class="product-image-wrapper">
+                            <div  class="product-image-wrapper">
                                 <div class="single-products">
-                                    <div class="productinfo text-center">
+                                    <div  class="productinfo text-center">
 
                                         @if ($product ->discount == 1)
 
@@ -168,9 +168,9 @@
 
                                                     @endif
 
-                                                <h5 class="pric">{{$product ->price}} грн</h5>
+                                                <h5 id="price_{{$product ->id}}" class="pric">{{$product ->price}} грн</h5>
                                                 </div>
-                                                <a href="/add_product/{{$product ->id}}/1" class="btn btn-default add-to-cart" data-id="{{$product ->id}}"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                                <a  v-on:click="Add" class="btn btn-default add-to-cart" data-quantity="1" data-id="{{$product ->id}}"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                              </div>
                                           </div>
                                        </div>

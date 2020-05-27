@@ -16,12 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MainController@index')->name('main');
 
-Route::get('/add_product/{id}/{qty}', 'CartController@addProduct')
+Route::post('/add_product/{id}/{qty}', 'CartController@addProduct')
      ->name('addProduct')->where(['id' => '[0-9]+','qty' => '[0-9]+']);
 
 Route::get('/delete_product/{id}', 'CartController@deleteProduct')->name('deleteProduct')->where('id', '[0-9]+');
 
-Route::get('/minus_product/{id}', 'CartController@minusProduct')->name('minusProduct')->where('id', '[0-9]+');
+Route::post('/minus_product/{id}/', 'CartController@minusProduct')->name('minusProduct')->where('id', '[0-9]+');
+
+Route::post('/plus_product/{id}/', 'CartController@plusProduct')->name('plusProduct')->where('id',  '[0-9]+');
 
 Route::get('checkout', 'CartController@checkoutAction')->name('checkout');
 

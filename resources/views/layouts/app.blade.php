@@ -129,8 +129,8 @@
                                 <div class="cartTopBlock">
                                     <a href="/checkout" class="cartLink topNavBlock">
 
-                                        <p id="cart-count" class="mobile-hidden">Корзина: {{ $count }}</p>
-                                        <span class="mobile-hidden"><span>{{ $total}} грн</span></span>
+                                        <p id="cart-count" class="mobile-hidden">Корзина: <span ref="cart_count"> {{ $count }}</span></p>
+                                        <span class="mobile-hidden"><span  ref="total_price">{{ $total}} </span><span> грн</span>
 
 
                                     </a>
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
                 <div class="container">
                     <div class="journal-menu">
                          <ul class="super-menu mobile-menu menu-floated">
@@ -197,7 +197,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+
         </header>
         <main class="py-4">
             @yield('content')

@@ -23,7 +23,7 @@
                 </div>
                     <div class="col-9 padding-right">
                         <div  class="Items_Back">
-                            <div  class="product-details"><!--product-details-->
+                            <div class="product-details"><!--product-details-->
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-5">
@@ -53,7 +53,7 @@
                                                 </div>
                                             </div>
                                         <div class="col-7">
-                                    <div class="product-information">
+                                    <div id="name_string" class="product-information">
 
                                      @if ($product -> is_new)
 
@@ -61,8 +61,8 @@
 
                                      @endif
 
-                                     <h2 >{{$product -> name_site}}</h2>
-                                     <div  class="But_add" >
+                                     <h2 v-bind:title="message">{{$product -> name_site}}</h2>
+                                     <div class="But_add" >
                                         <span>
                                         <div class="row justify-content-center">
                                             <span class="price">{{$product -> price}}</span>

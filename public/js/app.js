@@ -1899,6 +1899,78 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/components/add_to_cart.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/components/add_to_cart.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+var string = new Vue({
+  el: '#app',
+  data: {},
+  props: {},
+  methods: {
+    Add: function Add(event) {
+      var $cart_count = this.$refs.cart_count.innerText;
+      var $total_price = this.$refs.total_price.innerText;
+      var $button = event.target;
+      var buttonID = $button.dataset.id;
+      var quantity = $button.dataset.quantity;
+      var price = document.getElementById("price_" + buttonID).innerText;
+      var $new_cart_count = parseInt($cart_count) + parseInt(quantity);
+      var $new_total_price = parseInt($total_price) + parseInt(price) * parseInt(quantity);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/add_product/" + buttonID + "/" + quantity);
+      this.$refs.cart_count.innerText = $new_cart_count;
+      this.$refs.total_price.innerText = $new_total_price;
+    },
+    Plus: function Plus(buttonID) {
+      var $cart_count = this.$refs.cart_count.innerText;
+      var $total_prices = this.$refs.total_price.innerText;
+      var price = document.getElementById("price_" + buttonID).innerText;
+      var quantity = 1;
+      var prices = document.getElementById("prices_" + buttonID).innerText;
+      var $count = document.getElementById("cart_" + buttonID).innerText;
+      var $new_count = parseInt($count) + quantity;
+      var $new_prices = parseInt(prices) + parseInt(price) * quantity;
+      var $new_cart_count = parseInt($cart_count) + quantity;
+      var $new_total_prices = parseInt($total_prices) + parseInt(price) * quantity;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/plus_product/" + buttonID);
+      document.getElementById("prices_" + buttonID).innerText = $new_prices;
+      document.getElementById("cart_" + buttonID).innerText = $new_count;
+      this.$refs.cart_count.innerText = $new_cart_count;
+      this.$refs.total_price.innerText = $new_total_prices;
+      this.$refs.total_prices.innerText = $new_total_prices;
+    },
+    Minus: function Minus(buttonID) {
+      var $cart_count = this.$refs.cart_count.innerText;
+      var $total_prices = this.$refs.total_price.innerText;
+      var price = document.getElementById("price_" + buttonID).innerText;
+      var quantity = 1;
+      var prices = document.getElementById("prices_" + buttonID).innerText;
+      var $count = document.getElementById("cart_" + buttonID).innerText;
+      var $new_count = parseInt($count) + quantity;
+      var $new_prices = parseInt(prices) + parseInt(price) * quantity;
+      var $new_cart_count = parseInt($cart_count) + quantity;
+      var $new_total_prices = parseInt($total_prices) + parseInt(price) * quantity;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/minus_product/" + buttonID);
+      document.getElementById("prices_" + buttonID).innerText = $new_prices;
+      document.getElementById("cart_" + buttonID).innerText = $new_count;
+      this.$refs.cart_count.innerText = $new_cart_count;
+      this.$refs.total_price.innerText = $new_total_prices;
+      this.$refs.total_prices.innerText = $new_total_prices;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/components/disable.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/components/disable.vue?vue&type=script&lang=js& ***!
@@ -1910,11 +1982,17 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_0__);
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  directives: {
-    mask: vue_the_mask__WEBPACK_IMPORTED_MODULE_0__["mask"]
+  components: {
+    TheMask: vue_the_mask__WEBPACK_IMPORTED_MODULE_0__["TheMask"]
+  }
+});
+var app = new Vue({
+  el: '#phone_div',
+  data: {
+    test: '111',
+    check: '222'
   }
 });
 
@@ -49621,6 +49699,56 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/components/add_to_cart.vue":
+/*!**********************************************!*\
+  !*** ./resources/components/add_to_cart.vue ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _add_to_cart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add_to_cart.vue?vue&type=script&lang=js& */ "./resources/components/add_to_cart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _add_to_cart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/components/add_to_cart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/components/add_to_cart.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/components/add_to_cart.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_add_to_cart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4-0!../../node_modules/vue-loader/lib??vue-loader-options!./add_to_cart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/components/add_to_cart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_add_to_cart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/components/disable.vue":
 /*!******************************************!*\
   !*** ./resources/components/disable.vue ***!
@@ -49697,19 +49825,12 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('disable', __webpack_require__(/*! ../components/disable.vue */ "./resources/components/disable.vue")["default"]);
+Vue.component('add_cart', __webpack_require__(/*! ../components/add_to_cart.vue */ "./resources/components/add_to_cart.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    test: '111',
-    check: '222'
-  }
-});
 
 /***/ }),
 
@@ -49742,6 +49863,19 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

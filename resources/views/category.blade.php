@@ -7,7 +7,7 @@
                    <div class="left-sidebar">
                        <h4 id="categor_name">Категории</h4>
                        <div class="panel-group category-products">
-
+                           //вывод категории методом переборки масива
                            @foreach($category as $cat)
 
                            <div class="panel panel-default">
@@ -84,9 +84,9 @@
                                                                         <div class="g-price-old-uah">{{$product -> last_price}}<span class="g-price-old-uah-sign"> грн</span></div>
                                                                     @endif
 
-                                                                        <h5 class="pric">{{$product ->price}}грн</h5>
+                                                                        <h5 id="price_{{$product ->id}}" class="pric">{{$product ->price}}грн</h5>
                                                                     </div>
-                                                                    <a href="#" class="btn btn-default add-to-cart" data-id="{{$product ->id}}"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                                                    <a  v-on:click="Add" class="btn btn-default add-to-cart" data-quantity="1" data-id="{{$product ->id}}"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                                                 </div>
                                                             </div>
                                                           </div>

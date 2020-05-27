@@ -1,9 +1,14 @@
+<script>
+    import {TheMask} from 'vue-the-mask'
+    export default {
+        components: {TheMask}
+    }
 
-    <script>
-        import {mask} from 'vue-the-mask'
-        export default {
-            directives: {mask}
+    const app = new Vue({
+        el: '#phone_div',
+        data: {
+            test: '111',
+            check: '222',
         }
-
-
+    });
 </script>

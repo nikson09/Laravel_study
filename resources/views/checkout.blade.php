@@ -65,19 +65,19 @@
                                        @endif
 
                                        <div class="coast">
-                                            <span id="price_item{{$product['id']}}">
+                                            <span id="price_{{$product['id']}}">
                                         {{$product['price']}} грн</span>
 
                                         </div>
                                        </td>
                                        <td colspan="2">
                                            <div class="row justify-content-center">
-                                                <a href="/minus_product/{{$product['id']}}" class="btn btn-default Ajax-minus" data-quantity="1"  data-id="{{$product['id']}}" ><i class="fa fa-minus"></i></a>
-                                                <span class="quantity" id="quantity{{$product['id']}}">{{session('products_cart')[$product['id']]}}</span>
-                                                <a href="/add_product/{{$product['id']}}/1" class="btn btn-default Ajax-plus" data-quantity="1"  data-id="{{$product['id']}}" ><i class="fa fa-plus"></i></a>
+                                                <a v-on:click="Minus({{$product['id']}})" class="btn btn-default Ajax-minus" data-quantity="1"  data-id="{{$product['id']}}" ><i class="fa fa-minus"></i></a>
+                                                <span id="cart_{{$product['id']}}" ref="cart_{{$product['id']}}" class="quantity" id="quantity">{{session('products_cart')[$product['id']]}}</span>
+                                                <a v-on:click="Plus({{$product['id']}})" class="btn btn-default Ajax-plus" data-quantity="1"  data-id="{{$product['id']}}" ><i class="fa fa-plus"></i></a>
                                            </div>
                                        </td>
-                                       <td class="text-center"><span class="price_items" id ="price_items{{$product['id']}}" data-price="">{{session('products_cart')[$product['id']] * $product['price']}} грн</span></td>
+                                       <td class="text-center"><span class="price_items" id="prices_{{$product['id']}}" ref="prices_{{$product['id']}}" data-price="">{{session('products_cart')[$product['id']] * $product['price']}} грн</span></td>
                                        <td>
                                             <a class="btn btn-default checkout" href="/delete_product/{{$product['id']}}">
                                             <i class="fa fa-trash"></i>
@@ -89,7 +89,7 @@
                                     <td colspan="5">Общая стоимость:</td>
                                     <td colspan="2">
                                         <div class="row justify-content-center">
-                                            <h4 ><span id="price_items_all">{{$total}}</span></h4><h6>грн</h6>
+                                            <h4 ><span id="price_items_all" ref="total_prices">{{$total}}</span></h4><h6>грн</h6>
                                         </div>
                                     </td>
                                 </tr>

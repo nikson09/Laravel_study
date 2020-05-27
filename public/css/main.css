@@ -1365,7 +1365,7 @@ color:#fff
 color:#C7A87A;
 }
 .cartLink:hover::before {
-    background-image: url("/Templates/images/cart_ic_hover.svg");
+    background-image: url("../img/cart_ic_hover.svg");
 }
 
 .navbar-brand {

@@ -19,7 +19,7 @@ Route::get('/', 'MainController@index')->name('main');
 Route::post('/add_product/{id}/{qty}', 'CartController@addProduct')
      ->name('addProduct')->where(['id' => '[0-9]+','qty' => '[0-9]+']);
 
-Route::get('/delete_product/{id}', 'CartController@deleteProduct')->name('deleteProduct')->where('id', '[0-9]+');
+Route::post('/delete_product/{id}', 'CartController@deleteProduct')->name('deleteProduct')->where('id', '[0-9]+');
 
 Route::post('/minus_product/{id}/', 'CartController@minusProduct')->name('minusProduct')->where('id', '[0-9]+');
 

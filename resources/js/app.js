@@ -19,9 +19,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('disable', require('../components/disable.vue').default);
-Vue.component('add_cart', require('../components/add_to_cart.vue').default);
 
+Vue.component('Add_cart', require('../components/add_to_cart.vue').default);
+
+Vue.component('Disable', require('../components/disable.vue').default);
 
 
 /**
@@ -29,5 +30,6 @@ Vue.component('add_cart', require('../components/add_to_cart.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 
 

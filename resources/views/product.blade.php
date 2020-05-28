@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
+
     <section>
-        <div class="container">
+        <div id="container" class="container">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="left-sidebar">
@@ -18,11 +19,12 @@
 
                             @endforeach
 
+
                         </div>
                     </div>
                 </div>
-                    <div class="col-9 padding-right">
-                        <div  class="Items_Back">
+                    <div  class="col-9 padding-right">
+                        <div id="Items_Back" class="Items_Back">
                             <div class="product-details"><!--product-details-->
                                 <div class="container">
                                     <div class="row">
@@ -61,18 +63,18 @@
 
                                      @endif
 
-                                     <h2 v-bind:title="message">{{$product -> name_site}}</h2>
+                                     <h2 >{{$product -> name_site}}</h2>
                                      <div class="But_add" >
                                         <span>
                                         <div class="row justify-content-center">
-                                            <span class="price">{{$product -> price}}</span>
+                                            <span id="price_{{$product ->id}}" class="price">{{$product -> price}}</span>
                                             <span  class="price">грн</span>
                                         </div>
                                         <div class="row justify-content-center">
-                                            <span class="count">Кол-во: <button class="down btn btn-default checkout" >
-                                                <i class="fa fa-minus"></i></button><input type="text" class="quantity" id="quantity" value="1" data-min-value="1" data-max-value="10000" min="1"  pattern="[0-9]*"/>
-                                                <button class="up btn btn-default checkout" ><i class="fa fa-plus"></i></button>
-                                                <a href="/add_product/{{$product -> id}}/" class="btn btn-default add-to-cart" data-quantity="1"  data-id="" ><i class="fa fa-shopping-cart"></i>В корзину</a></span>
+                                            <span class="count">Кол-во: <button v-on:click="Minus" class="down btn btn-default checkout" >
+                                                <i class="fa fa-minus"></i></button><input ref='quantity'  type="tel" class="quantity" id="quantity" value="1" data-min-value="1" data-max-value="10000" min-value="1"  pattern="[0-9]*"/>
+                                                <button v-on:click="Plus" class="up btn btn-default checkout" ><i class="fa fa-plus"></i></button>
+                                                <a  v-on:click="Add_to_cart" class="btn btn-default add-to-cart" data-quantity="1"  data-id="{{$product ->id}}" ><i class="fa fa-shopping-cart"></i>В корзину</a></span>
                                             </span>
                                         </div>
                                         </span>

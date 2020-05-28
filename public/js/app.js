@@ -1911,11 +1911,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
-var string = new Vue({
-  el: '#app',
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Add_cart"
+});
+var Add_cart = new Vue({
+  el: '#container',
   data: {},
   props: {},
+  watch: {},
   methods: {
     Add: function Add(event) {
       var $cart_count = this.$refs.cart_count.innerText;
@@ -1923,6 +1926,58 @@ var string = new Vue({
       var $button = event.target;
       var buttonID = $button.dataset.id;
       var quantity = $button.dataset.quantity;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/add_product/" + buttonID + "/" + quantity);
+      var price = document.getElementById("price_" + buttonID).innerText;
+      var $new_cart_count = parseInt($cart_count) + parseInt(quantity);
+      var $new_total_price = parseInt($total_price) + parseInt(price) * parseInt(quantity);
+      this.$refs.cart_count.innerText = $new_cart_count;
+      this.$refs.total_price.innerText = $new_total_price;
+    },
+    Plus_cart: function Plus_cart(buttonID) {
+      var $cart_count = this.$refs.cart_count.innerText;
+      var $total_prices = this.$refs.total_price.innerText;
+      var price = document.getElementById("price_" + buttonID).innerText;
+      var quantity = 1;
+      var prices = document.getElementById("prices_" + buttonID).innerText;
+      var $count = document.getElementById("cart_" + buttonID).innerText;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/plus_product/" + buttonID);
+      var $new_count = parseInt($count) + quantity;
+      var $new_prices = parseInt(prices) + parseInt(price) * quantity;
+      var $new_cart_count = parseInt($cart_count) + quantity;
+      var $new_total_prices = parseInt($total_prices) + parseInt(price) * quantity;
+      document.getElementById("prices_" + buttonID).innerText = $new_prices;
+      document.getElementById("cart_" + buttonID).innerText = $new_count;
+      this.$refs.cart_count.innerText = $new_cart_count;
+      this.$refs.total_price.innerText = $new_total_prices;
+      this.$refs.total_prices.innerText = $new_total_prices;
+    },
+    Minus_cart: function Minus_cart(buttonID) {
+      var $cart_count = this.$refs.cart_count.innerText;
+      var $total_prices = this.$refs.total_price.innerText;
+      var price = document.getElementById("price_" + buttonID).innerText;
+      var quantity = 1;
+      var prices = document.getElementById("prices_" + buttonID).innerText;
+      var $count = document.getElementById("cart_" + buttonID).innerText;
+
+      if (parseInt($count) === 1) {} else {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/minus_product/" + buttonID);
+        var $new_count = parseInt($count) - quantity;
+        var $new_prices = parseInt(prices) - parseInt(price) * quantity;
+        var $new_cart_count = parseInt($cart_count) - quantity;
+        var $new_total_prices = parseInt($total_prices) - parseInt(price) * quantity;
+        document.getElementById("prices_" + buttonID).innerText = $new_prices;
+        document.getElementById("cart_" + buttonID).innerText = $new_count;
+        this.$refs.cart_count.innerText = $new_cart_count;
+        this.$refs.total_price.innerText = $new_total_prices;
+        this.$refs.total_prices.innerText = $new_total_prices;
+      }
+    },
+    Add_to_cart: function Add_to_cart(event) {
+      var $cart_count = this.$refs.cart_count.innerText;
+      var $total_price = this.$refs.total_price.innerText;
+      var $button = event.target;
+      var buttonID = $button.dataset.id;
+      var quantity = this.$refs.quantity.value;
       var price = document.getElementById("price_" + buttonID).innerText;
       var $new_cart_count = parseInt($cart_count) + parseInt(quantity);
       var $new_total_price = parseInt($total_price) + parseInt(price) * parseInt(quantity);
@@ -1930,41 +1985,39 @@ var string = new Vue({
       this.$refs.cart_count.innerText = $new_cart_count;
       this.$refs.total_price.innerText = $new_total_price;
     },
-    Plus: function Plus(buttonID) {
-      var $cart_count = this.$refs.cart_count.innerText;
-      var $total_prices = this.$refs.total_price.innerText;
-      var price = document.getElementById("price_" + buttonID).innerText;
-      var quantity = 1;
-      var prices = document.getElementById("prices_" + buttonID).innerText;
-      var $count = document.getElementById("cart_" + buttonID).innerText;
-      var $new_count = parseInt($count) + quantity;
-      var $new_prices = parseInt(prices) + parseInt(price) * quantity;
-      var $new_cart_count = parseInt($cart_count) + quantity;
-      var $new_total_prices = parseInt($total_prices) + parseInt(price) * quantity;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/plus_product/" + buttonID);
-      document.getElementById("prices_" + buttonID).innerText = $new_prices;
-      document.getElementById("cart_" + buttonID).innerText = $new_count;
-      this.$refs.cart_count.innerText = $new_cart_count;
-      this.$refs.total_price.innerText = $new_total_prices;
-      this.$refs.total_prices.innerText = $new_total_prices;
+    Plus: function Plus(event) {
+      var quantity = this.$refs.quantity.value;
+      this.$refs.quantity.value = parseInt(quantity) + 1;
     },
-    Minus: function Minus(buttonID) {
+    Minus: function Minus(event) {
+      var quantity = this.$refs.quantity.value;
+
+      if (parseInt(quantity) === 1) {} else {
+        this.$refs.quantity.value = parseInt(quantity) - 1;
+      }
+    },
+    Remove: function Remove(buttonID) {
       var $cart_count = this.$refs.cart_count.innerText;
       var $total_prices = this.$refs.total_price.innerText;
-      var price = document.getElementById("price_" + buttonID).innerText;
-      var quantity = 1;
       var prices = document.getElementById("prices_" + buttonID).innerText;
       var $count = document.getElementById("cart_" + buttonID).innerText;
-      var $new_count = parseInt($count) + quantity;
-      var $new_prices = parseInt(prices) + parseInt(price) * quantity;
-      var $new_cart_count = parseInt($cart_count) + quantity;
-      var $new_total_prices = parseInt($total_prices) + parseInt(price) * quantity;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/minus_product/" + buttonID);
-      document.getElementById("prices_" + buttonID).innerText = $new_prices;
-      document.getElementById("cart_" + buttonID).innerText = $new_count;
+      var item = document.getElementById("item_" + buttonID);
+      var table_cart = document.getElementById("table_cart");
+      var checkout_button = document.getElementById("checkout_button");
+      var message = document.getElementById("message");
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/delete_product/" + buttonID);
+      item.remove();
+      var $new_cart_count = parseInt($cart_count) - parseInt($count);
+      var $new_total_price = parseInt($total_prices) - parseInt(prices);
       this.$refs.cart_count.innerText = $new_cart_count;
-      this.$refs.total_price.innerText = $new_total_prices;
-      this.$refs.total_prices.innerText = $new_total_prices;
+      this.$refs.total_price.innerText = $new_total_price;
+      this.$refs.total_prices.innerText = $new_total_price;
+
+      if (parseInt($new_total_price) === 0) {
+        checkout_button.remove();
+        table_cart.remove();
+        message.innerHTML = "Ваша корзина пуста";
+      }
     }
   }
 });
@@ -1984,12 +2037,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "disable",
   components: {
     TheMask: vue_the_mask__WEBPACK_IMPORTED_MODULE_0__["TheMask"]
   }
 });
-var app = new Vue({
-  el: '#phone_div',
+var apps = new Vue({
+  el: '#Items_Back',
   data: {
     test: '111',
     check: '222'
@@ -49824,8 +49878,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('disable', __webpack_require__(/*! ../components/disable.vue */ "./resources/components/disable.vue")["default"]);
-Vue.component('add_cart', __webpack_require__(/*! ../components/add_to_cart.vue */ "./resources/components/add_to_cart.vue")["default"]);
+Vue.component('Add_cart', __webpack_require__(/*! ../components/add_to_cart.vue */ "./resources/components/add_to_cart.vue")["default"]);
+Vue.component('Disable', __webpack_require__(/*! ../components/disable.vue */ "./resources/components/disable.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -1,11 +1,12 @@
 <script>
     import {TheMask} from 'vue-the-mask'
     export default {
+        name: "disable",
         components: {TheMask}
     }
 
-    const app = new Vue({
-        el: '#phone_div',
+    const apps = new Vue({
+        el: '#Items_Back',
         data: {
             test: '111',
             check: '222',

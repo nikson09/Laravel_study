@@ -1908,14 +1908,20 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
+/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Add_cart"
+  name: "Add_cart",
+  components: {
+    TheMask: vue_the_mask__WEBPACK_IMPORTED_MODULE_0__["TheMask"]
+  }
 });
 var Add_cart = new Vue({
-  el: '#container',
+  el: '#app',
   data: {},
   props: {},
   watch: {},
@@ -1926,7 +1932,7 @@ var Add_cart = new Vue({
       var $button = event.target;
       var buttonID = $button.dataset.id;
       var quantity = $button.dataset.quantity;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/add_product/" + buttonID + "/" + quantity);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/add_product/" + buttonID + "/" + quantity);
       var price = document.getElementById("price_" + buttonID).innerText;
       var $new_cart_count = parseInt($cart_count) + parseInt(quantity);
       var $new_total_price = parseInt($total_price) + parseInt(price) * parseInt(quantity);
@@ -1940,7 +1946,7 @@ var Add_cart = new Vue({
       var quantity = 1;
       var prices = document.getElementById("prices_" + buttonID).innerText;
       var $count = document.getElementById("cart_" + buttonID).innerText;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/plus_product/" + buttonID);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/plus_product/" + buttonID);
       var $new_count = parseInt($count) + quantity;
       var $new_prices = parseInt(prices) + parseInt(price) * quantity;
       var $new_cart_count = parseInt($cart_count) + quantity;
@@ -1960,7 +1966,7 @@ var Add_cart = new Vue({
       var $count = document.getElementById("cart_" + buttonID).innerText;
 
       if (parseInt($count) === 1) {} else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/minus_product/" + buttonID);
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/minus_product/" + buttonID);
         var $new_count = parseInt($count) - quantity;
         var $new_prices = parseInt(prices) - parseInt(price) * quantity;
         var $new_cart_count = parseInt($cart_count) - quantity;
@@ -1981,7 +1987,7 @@ var Add_cart = new Vue({
       var price = document.getElementById("price_" + buttonID).innerText;
       var $new_cart_count = parseInt($cart_count) + parseInt(quantity);
       var $new_total_price = parseInt($total_price) + parseInt(price) * parseInt(quantity);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/add_product/" + buttonID + "/" + quantity);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/add_product/" + buttonID + "/" + quantity);
       this.$refs.cart_count.innerText = $new_cart_count;
       this.$refs.total_price.innerText = $new_total_price;
     },
@@ -2005,7 +2011,7 @@ var Add_cart = new Vue({
       var table_cart = document.getElementById("table_cart");
       var checkout_button = document.getElementById("checkout_button");
       var message = document.getElementById("message");
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/delete_product/" + buttonID);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/delete_product/" + buttonID);
       item.remove();
       var $new_cart_count = parseInt($cart_count) - parseInt($count);
       var $new_total_price = parseInt($total_prices) - parseInt(prices);
@@ -2019,34 +2025,6 @@ var Add_cart = new Vue({
         message.innerHTML = "Ваша корзина пуста";
       }
     }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/components/disable.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/components/disable.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
-/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "disable",
-  components: {
-    TheMask: vue_the_mask__WEBPACK_IMPORTED_MODULE_0__["TheMask"]
-  }
-});
-var apps = new Vue({
-  el: '#Items_Back',
-  data: {
-    test: '111',
-    check: '222'
   }
 });
 
@@ -49803,56 +49781,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/components/disable.vue":
-/*!******************************************!*\
-  !*** ./resources/components/disable.vue ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _disable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./disable.vue?vue&type=script&lang=js& */ "./resources/components/disable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  _disable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/components/disable.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/components/disable.vue?vue&type=script&lang=js&":
-/*!*******************************************************************!*\
-  !*** ./resources/components/disable.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_disable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4-0!../../node_modules/vue-loader/lib??vue-loader-options!./disable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/components/disable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_disable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -49878,8 +49806,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('Add_cart', __webpack_require__(/*! ../components/add_to_cart.vue */ "./resources/components/add_to_cart.vue")["default"]);
-Vue.component('Disable', __webpack_require__(/*! ../components/disable.vue */ "./resources/components/disable.vue")["default"]);
+Vue.component('add_to_cart', __webpack_require__(/*! ../components/add_to_cart.vue */ "./resources/components/add_to_cart.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

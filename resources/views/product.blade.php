@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="row justify-content-center">
                                             <span class="count">Кол-во: <button v-on:click="Minus" class="down btn btn-default checkout" >
-                                                <i class="fa fa-minus"></i></button><input ref='quantity'  type="tel" class="quantity" id="quantity" value="1" data-min-value="1" data-max-value="10000" min-value="1"  pattern="[0-9]*"/>
+                                                <i class="fa fa-minus"></i></button><input ref='quantity' v-mask="'##'"  type="tel" class="quantity" id="quantity" value="1" data-min-value="1" data-max-value="10000" min-value="1"  pattern="[0-9]*"/>
                                                 <button v-on:click="Plus" class="up btn btn-default checkout" ><i class="fa fa-plus"></i></button>
                                                 <a  v-on:click="Add_to_cart" class="btn btn-default add-to-cart" data-quantity="1"  data-id="{{$product ->id}}" ><i class="fa fa-shopping-cart"></i>В корзину</a></span>
                                             </span>

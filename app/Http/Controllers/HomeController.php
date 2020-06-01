@@ -32,6 +32,6 @@ class HomeController extends Controller
         $count = Cart::count_items();
         $total = Cart::price_items();
 
-        return view('home',compact(['category','count','total']);
+        return view('home',compact(['category','count','total']));
     }
 }

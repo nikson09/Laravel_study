@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Laravel\Cashier\Cashier;
+use App\User;
+use Stripe\Stripe;
+use Stripe\Charge;
 use App\Traits\Cart;
 use App\Category;
 use App\Product;
@@ -81,6 +85,29 @@ class CartController extends Controller
         $products = null;
         }
         return view('checkout',compact(['category','count','products','total']));
+    }
+    public function stripe()
+    {
+            $category = Category::all();
+
+            $count = Cart::count_items();
+            $total = Cart::price_items();
+
+
+        return view('stripe',compact(['category','count','total']));
+    }
+    public function stripePay(Request $request)
+    {
+        $total = Cart::price_items();
+        $stripe = new \Stripe\StripeClient(
+          'sk_test_Sd7RQO5SRZB8Skrw732MlUIF00eNIsxq06'
+        );
+        $stripe->paymentIntents->create([
+          'amount' => $total*100,
+          'currency' => 'uah',
+          'payment_method_types' => ['card'],
+        ]);
+
     }
 
 

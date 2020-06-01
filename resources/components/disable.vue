@@ -6,7 +6,7 @@
     }
 
     const apps = new Vue({
-        el: '#Items_Back',
+        el: '#app',
         data: {
             test: '111',
             check: '222',

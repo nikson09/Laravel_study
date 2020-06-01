@@ -14,6 +14,7 @@
     <script src="{{ asset('js/jquery.cycle2.min.js') }}"defer></script>
     <script src="{{ asset('js/jquery.cycle2.carousel.min.js') }}" defer></script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -23,6 +24,8 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main_menu.css') }}" rel="stylesheet">
     <link href="{{ asset('css/media-queries.css') }}" rel="stylesheet">
+    @yield('styles')
+
 </head>
 <body>
     <div id="app">
@@ -215,7 +218,7 @@
         </footer>
 </div>
 
-
+    @yield('scripts')
 </body>
 </html>
 

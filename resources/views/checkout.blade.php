@@ -98,7 +98,7 @@
                                 </tr>
                            </table>
                            <div id="checkout_button" class="checkout_button">
-                                <a class="btn btn-default checkout" href="/cart/checkout"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
+                                <a class="btn btn-default checkout" href="/checkout/stripe"><i class="fa fa-shopping-cart"></i> Оформить заказ</a>
                            </div>
 
                                 @else

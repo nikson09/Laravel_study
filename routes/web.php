@@ -26,6 +26,8 @@ Route::post('/minus_product/{id}/', 'CartController@minusProduct')->name('minusP
 Route::post('/plus_product/{id}/', 'CartController@plusProduct')->name('plusProduct')->where('id',  '[0-9]+');
 
 Route::get('checkout', 'CartController@checkoutAction')->name('checkout');
+Route::get('checkout/stripe', 'CartController@stripe')->name('stripe');
+Route::post('/stripe_pay', 'CartController@stripePay')->name('stripe_pay');
 
 Route::get('/categories/{id}', 'CategoryController@index')->name('category')->where('id', '[0-9]+');
 
@@ -33,4 +35,6 @@ Route::get('/product/{id}', 'ProductController@index')->name('product')->where('
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+});

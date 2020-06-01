@@ -1,14 +1,15 @@
 <script>
 
-
+    import {TheMask} from 'vue-the-mask';
     import axios from 'axios';
     export default
         {
-            name: "Add_cart"
+            name: "Add_cart",
+            components: {TheMask}
         }
 
     const Add_cart = new Vue({
-        el: '#container',
+        el: '#app',
         data:
         {
 

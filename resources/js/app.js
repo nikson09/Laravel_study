@@ -20,7 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-Vue.component('add_to_cart', require('../components/add_to_cart.vue').default);
+
 
 
 

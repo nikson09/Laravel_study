@@ -34,28 +34,29 @@
                                                 <div class="login-form">
                                                      <form action="/stripe_pay" method="post" id="payment-form">
                                                      @csrf
+
                                                     <div class="col-12">
                                                         <label for="c1_contact_first_name">Фио<span class="req-star">*</span></label>
 
-                                                        <input class="form-control" type="text" name="userName" placeholder="Фио" value=""/>
+                                                        <input class="form-control" type="text" name="name" placeholder="Фио" value=""/>
                                                     </div>
                                                     <div class="col-12">
                                                         <label  for="c1_contact_first_name">Номер телефона<span class="req-star">*</span></label>
 
-                                                        <input id="phone" v-mask="'(###)#######'" class="form-control" type="tel" name="phone" placeholder="Номер телефона" value=""/>
+                                                        <input id="phone" class="form-control" type="tel" name="phone" placeholder="Номер телефона" value=""/>
                                                     </div>
 
                                                 <div class="col-12">
                                                     <label  for="c1_contact_first_name">Область<span class="req-star">*</span></label>
-                                                    <input class="form-control" type="text" name="userOblast" placeholder="Область" value=""/>
+                                                    <input class="form-control" type="text" name="state" placeholder="Область" value=""/>
                                                 </div>
                                             <div class="col-12">
                                                 <label  for="c1_contact_first_name">Город<span class="req-star">*</span></label>
-                                                <input class="form-control" type="text" name="userCity" placeholder="Город" value=""/>
+                                                <input class="form-control" type="text" name="city" placeholder="Город" value=""/>
                                             </div>
                                             <div class="col-12">
                                                 <label for="c1_contact_first_name">Комментарий к заказу</label>
-                                                <textarea class="text-form form-control" type="text" name="userComment" placeholder="Сообщение" value=""/></textarea>
+                                                <textarea class="text-form form-control" type="text" name="comment" placeholder="Сообщение" value=""/></textarea>
                                             </div>
                                             <div class="col-12">
 
@@ -70,8 +71,12 @@
 
 
 
-                                            <input id='card-button' class="nab"  type="submit" name="submit" class="btn btn-default" value="Оформить" />
+     <div id="card-errors" role="alert"></div>
+
+                                            <input id='card-button' class="nab"  type="submit"  class="btn btn-default" value="Оформить" />
                                                     </form>
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -87,29 +92,73 @@
 <script>
 // Create a Stripe client.
 const stripe = Stripe('pk_test_Zngy131vA5v1DIpiV8XaRGXf00vm0VeNPb');
+// Create an instance of Elements.
+var elements = stripe.elements();
 
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
 
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
 
-    const elements = stripe.elements();
-    const cardElement = elements.create('card');
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
 
-    cardElement.mount('#card-element');
-    const cardHolderPhone = document.getElementById('phone');
-    const cardButton = document.getElementById('card-button');
+// Handle real-time validation errors from the card Element.
+card.on('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
 
-    cardButton.addEventListener('click', async (e) => {
-        const { paymentMethod, error } = await stripe.createPaymentMethod(
-            'card', cardElement, {
-                billing_details: { phone: cardHolderPhone.value }
-            }
-        );
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
 
-        if (error) {
-            // Display "error.message" to the user...
-        } else {
-            // The card has been verified successfully...
-        }
-    });
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+});
+
+// Submit the form with the token ID.
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
 </script>
 
 @endsection

@@ -29,6 +29,10 @@ Route::get('checkout', 'CartController@checkoutAction')->name('checkout');
 Route::get('checkout/stripe', 'CartController@stripe')->name('stripe');
 Route::post('/stripe_pay', 'CartController@stripePay')->name('stripe_pay');
 
+Route::get('payment', 'PayPalController@payment')->name('payment');
+Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
+Route::get('payment/success', 'PayPalController@success')->name('payment.success');
+
 Route::get('/categories/{id}', 'CategoryController@index')->name('category')->where('id', '[0-9]+');
 
 Route::get('/product/{id}', 'ProductController@index')->name('product')->where('id', '[0-9]+');

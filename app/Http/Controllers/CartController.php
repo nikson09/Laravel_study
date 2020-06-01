@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Laravel\Cashier\Cashier;
 use App\User;
 use Stripe\Stripe;
+use Stripe\Customer;
 use Stripe\Charge;
 use App\Traits\Cart;
 use App\Category;
@@ -98,18 +99,24 @@ class CartController extends Controller
     }
     public function stripePay(Request $request)
     {
-        $total = Cart::price_items();
-        $stripe = new \Stripe\StripeClient(
-          'sk_test_Sd7RQO5SRZB8Skrw732MlUIF00eNIsxq06'
-        );
-        $stripe->paymentIntents->create([
-          'amount' => $total*100,
-          'currency' => 'uah',
-          'payment_method_types' => ['card'],
-        ]);
+         $total = Cart::price_items();
+         Stripe::setApiKey(env('STRIPE_SECRET'));
 
+         $customer = Customer::create(array(
+             'name' => $request->name,
+
+             'phone' => $request->phone,
+             'source'  => $request->stripeToken
+         ));
+
+         $charge = Charge::create(array(
+             'customer' => $customer->id,
+             'amount'   => $total*100,
+             'currency' => 'uah' ,
+             "metadata" => ['state' => $request->state,
+                                         'city' => $request->city,
+                                         'Description' => $request->comment]
+
+         ));
     }
-
-
-
 }

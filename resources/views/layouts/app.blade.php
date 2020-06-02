@@ -11,9 +11,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script src="{{ asset('js/jquery.cycle2.min.js') }}"defer></script>
     <script src="{{ asset('js/jquery.cycle2.carousel.min.js') }}" defer></script>
-
+ @yield('scripts')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -218,7 +219,7 @@
         </footer>
 </div>
 
-    @yield('scripts')
+
 </body>
 </html>
 

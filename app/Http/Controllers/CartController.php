@@ -97,6 +97,18 @@ class CartController extends Controller
 
         return view('stripe',compact(['category','count','total']));
     }
+
+    public function payment()
+    {
+            $category = Category::all();
+
+            $count = Cart::count_items();
+            $total = Cart::price_items();
+
+
+        return view('paypal',compact(['category','count','total']));
+    }
+
     public function stripePay(Request $request)
     {
          $total = Cart::price_items();
@@ -118,5 +130,9 @@ class CartController extends Controller
                                          'Description' => $request->comment]
 
          ));
+        session()->forget('products_cart');
+
+
+         return redirect(route('main'));
     }
 }

@@ -1378,6 +1378,9 @@ color:#C7A87A;
     background:
     #FFF;
 }
+a#PayPal {
+    display: block;
+}
 .baner_mug img {
     margin-bottom: 20px;
     max-width: 100%;

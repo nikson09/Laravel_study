@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MainController@index')->name('main');
 
+
+
 Route::post('/add_product/{id}/{qty}', 'CartController@addProduct')
      ->name('addProduct')->where(['id' => '[0-9]+','qty' => '[0-9]+']);
 
@@ -33,6 +35,8 @@ Route::get('checkout/payment', 'CartController@payment')->name('payment');
 Route::get('payment', 'PayPalController@payment')->name('payment');
 Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
 Route::get('payment/success', 'PayPalController@success')->name('payment.success');
+
+Route::get('/start_parser', 'ParserController@getContent')->name('parser_start');
 
 Route::get('/categories/{id}', 'CategoryController@index')->name('category')->where('id', '[0-9]+');
 

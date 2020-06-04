@@ -21,6 +21,7 @@ class PayPalController extends Controller
 
             foreach($products as $id => $cart)
             {
+
 $data['items'][] =
 [
         'name' => $cart['name_site'],
@@ -67,7 +68,7 @@ $data['items'][] =
             if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
                         session()->forget('products_cart');
 
-             
+
                          return redirect(route('main'));
             }
 

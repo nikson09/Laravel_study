@@ -37,6 +37,7 @@ Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
 Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 
 Route::get('/start_parser', 'ParserController@getContent')->name('parser_start');
+Route::get('/start_parser_item', 'ParserItemController@getContent')->name('parser_start_item');
 
 Route::get('/categories/{id}', 'CategoryController@index')->name('category')->where('id', '[0-9]+');
 

@@ -35,14 +35,14 @@ class ParserController extends Controller
         {
             foreach($html as $key => $cat )
             {
-                 Rozetka::insert([
-                                  "id" => $cat['id'],
-                                  "title" => $cat['title'],
-                                  "parent_id" => $cat['parent_id'],
-                                  "manual_url" => $cat['manual_url'],
-                                  "category_id" => $cat['category_id'],
-                                  "top_category_id" => $cat['top_category_id']
-                               ]);
+                Rozetka::insert([
+                                    "id" => $cat['id'],
+                                    "title" => $cat['title'],
+                                    "parent_id" => $cat['parent_id'],
+                                    "manual_url" => $cat['manual_url'],
+                                    "category_id" => $cat['category_id'],
+                                    "top_category_id" => $cat['top_category_id']
+                                 ]);
 
                 if(isset($cat['children']))
                 {
@@ -50,25 +50,25 @@ class ParserController extends Controller
                     {
                         foreach($child as $child_category)
                         {
-                            Rozetka::insert([
-                                                "id" => $child_category['id'],
-                                                "title" => $child_category['title'],
-                                                "parent_id" => $child_category['parent_id'],
-                                                "manual_url" => $child_category['manual_url'],
-                                                "category_id" => $child_category['category_id'],
-                                                "top_category_id" => $child_category['top_category_id']
-                                           ]);
+                                 Rozetka::insert([
+                                                    "id" => $child_category['id'],
+                                                    "title" => $child_category['title'],
+                                                    "parent_id" => $child_category['parent_id'],
+                                                    "manual_url" => $child_category['manual_url'],
+                                                    "category_id" => $child_category['category_id'],
+                                                    "top_category_id" => $child_category['top_category_id']
+                                                 ]);
                             if(isset($child_category['children']))
                             {
                                 foreach($child_category['children'] as $sub_child)
                                 {
-                                    Rozetka::insert([  = [
-                                                        "id" => $sub_child['id'],
-                                                        "title" => $sub_child['title'],
-                                                        "manual_url" => $sub_child['manual_url'],
-                                                        "parent_id" => $sub_child['category_id'],
-                                                        "top_category_id" => $sub_child['top_category_id']
-                                                   ]);
+                                 Rozetka::insert([
+                                                    "id" => $sub_child['id'],
+                                                    "title" => $sub_child['title'],
+                                                    "parent_id" => $sub_child['category_id'],
+                                                    "manual_url" => $sub_child['manual_url'],
+                                                    "top_category_id" => $sub_child['top_category_id']
+                                                 ]);
                                 }
                             }
                         }
@@ -76,6 +76,8 @@ class ParserController extends Controller
                 }
             }
         }
+
          return redirect(route('main'));
+
     }
 }

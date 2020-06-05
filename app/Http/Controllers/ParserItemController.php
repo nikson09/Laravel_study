@@ -114,25 +114,27 @@ class ParserItemController extends Controller
                             {
                                 foreach($products as $product)
                                 {
-                                    Rozetka_products::insert ([
-                                                      "id" => $product['id'],
-                                                      "title" => $product['title'],
-                                                      "price" => $product['price'],
-                                                      "old_price" => $product['old_price'],
-                                                      "href" => $product['href'],
-                                                      "category_id" => $product['category_id'],
-                                                      "parent_category_id" => $product['parent_category_id'],
-                                                      "image_main" => $product['image_main']
-                                                      ]);
+                                            Rozetka_products::insertOrIgnore ([
+                                                                      "id" => $product['id'],
+                                                                      "title" => $product['title'],
+                                                                      "price" => $product['price'],
+                                                                      "old_price" => $product['old_price'],
+                                                                      "href" => $product['href'],
+                                                                      "category_id" => $product['category_id'],
+                                                                      "parent_category_id" => $product['parent_category_id'],
+                                                                      "image_main" => $product['image_main']
+                                                                      ]);
+
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-            }
-        }
-        return redirect(route('main'));
+         }
+
+
     }
 
 }

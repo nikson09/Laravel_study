@@ -62,6 +62,7 @@ class ParserController extends Controller
                             {
                                 foreach($child_category['children'] as $sub_child)
                                 {
+
                                  Rozetka::insert([
                                                     "id" => $sub_child['id'],
                                                     "title" => $sub_child['title'],
